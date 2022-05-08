@@ -1,8 +1,11 @@
+body {
+  background-color: #c4dce0;
+}
 .container {
   margin: 30px auto;
 }
 .card-header {
-  background-color: #c4dce0;
+  background-color: #abcecf;
   font-family: "Cinzel", serif;
 }
 .card-body {
