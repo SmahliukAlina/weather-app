@@ -59,6 +59,11 @@ button:hover {
   margin-bottom: 25px;
   text-align: center;
 }
+
+.cur-date {
+  font-size: 8px;
+}
+
 .cur-temperature {
   font-size: 60px;
   padding-top: 20px;
@@ -69,11 +74,6 @@ button:hover {
 .cur-feels-like-title {
   font-size: 15px;
   padding-top: 0;
-}
-
-.cur-weather-emoji {
-  font-size: 90px;
-  padding-top: 10px;
 }
 
 .forecast-title {
@@ -142,6 +142,10 @@ button:hover {
 #cur-date {
   font-size: 20px;
   margin-bottom: 15px;
+}
+#cur-weather-emoji {
+  font-size: 90px;
+  padding-top: 10px;
 }
 #weather-description {
   font-size: 15px;

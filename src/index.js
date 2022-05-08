@@ -17,7 +17,7 @@ function getTemp(response) {
   let curFeelsLikeTempElement = document.querySelector("#cur-feels-like-temp");
   let weatherDescrElement = document.querySelector("#weather-description");
   let fullCurDateElement = document.querySelector("#cur-date");
-  let curWeath = document.querySelector(".cur-weather-emoji");
+  let curWeath = document.querySelector("#cur-weather-emoji");
 
   cityElement.innerHTML = response.data.name;
   curTempElement.innerHTML = Math.round(response.data.main.temp);
