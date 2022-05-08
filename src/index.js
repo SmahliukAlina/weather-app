@@ -2,21 +2,50 @@
 let apiKey = "f7ab8c50642226d2981457d7445b4fa2";
 let unitSys = "metric";
 
+let weatherIcons = {
+  "01d": "☀️",
+  "01n": "☀️",
+  "02d": "🌤️",
+  "02n": "🌤️",
+  "03d": "⛅",
+  "03n": "⛅",
+  "04d": "☁️",
+  "04n": "☁️",
+  "09d": "🌧️",
+  "09n": "🌧️",
+  "10d": "🌦️",
+  "10n": "🌦️",
+  "11d": "⛈️",
+  "11n": "⛈️",
+  "13d": "🌨️",
+  "13n": "🌨️",
+  "50d": "🌫️",
+  "50n": "🌫️",
+};
+
+function formateDate(timestamp) {
+  let now = new Date(timestamp);
+  return `${weekDays[now.getDay()]}, 
+  ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}, 
+  ${getTime(now.getHours(), now.getMinutes())}`;
+}
+
 function getTemp(response) {
   console.log(response);
-  let city = response.data.name;
-  let temp = `${Math.round(response.data.main.temp)}°C`;
-  let feelsLikeTemp = `${Math.round(response.data.main.feels_like)}°C`;
 
   let cityElement = document.querySelector("#city");
   let curTempElement = document.querySelector("#cur-temp-value");
   let curFeelsLikeTempElement = document.querySelector("#cur-feels-like-temp");
   let weatherDescrElement = document.querySelector("#weather-description");
+  let fullCurDateElement = document.querySelector("#cur-date");
+  let curWeath = document.querySelector(".cur-weather-emoji");
 
-  cityElement.innerHTML = city;
-  curTempElement.innerHTML = temp;
-  curFeelsLikeTempElement.innerHTML = feelsLikeTemp;
+  cityElement.innerHTML = response.data.name;
+  curTempElement.innerHTML = Math.round(response.data.main.temp);
+  curFeelsLikeTempElement.innerHTML = Math.round(response.data.main.feels_like);
   weatherDescrElement.innerHTML = response.data.weather[0].description;
+  fullCurDateElement.innerHTML = formateDate(response.data.dt * 1000);
+  curWeath.innerHTML = weatherIcons[response.data.weather[0].icon];
 }
 
 function logPosition(position) {
@@ -55,28 +84,16 @@ let months = [
 ];
 
 function getTime(hour, min) {
-  if (min < 10) {
-    return `${hour}:0${min}`;
-  } else {
-    return `${hour}:${min}`;
+  let hours = hour;
+  let minutes = min;
+  if (hour < 10) {
+    hours = `0${hour}`;
   }
+  if (min < 10) {
+    minutes = `0${min}`;
+  }
+  return `${hours}:${minutes}`;
 }
-
-let now = new Date();
-let currentWeekDay = weekDays[now.getDay()];
-let currentDate = now.getDate();
-let currentMonth = months[now.getMonth()];
-let currentYear = now.getFullYear();
-let currentHour = now.getHours();
-let currentMin = now.getMinutes();
-
-let curWeekDayElement = document.querySelector("#cur-weekday");
-let fullCurDateElement = document.querySelector("#cur-date");
-let currentTime = document.querySelector("#cur-time");
-
-curWeekDayElement.innerHTML = `${currentWeekDay}`;
-fullCurDateElement.innerHTML = `${currentMonth} ${currentDate}, ${currentYear}`;
-currentTime.innerHTML = getTime(currentHour, currentMin);
 
 //Search and Change current city
 function changeCity(event) {
