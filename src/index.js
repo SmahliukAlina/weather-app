@@ -3,12 +3,16 @@ let apiKey = "f7ab8c50642226d2981457d7445b4fa2";
 let unitSys = "metric";
 
 function getTemp(response) {
-  let temp = `${Math.round(response.data.main.temp)}°C`;
+  console.log(response);
   let city = response.data.name;
+  let temp = `${Math.round(response.data.main.temp)}°C`;
+  let feelsLikeTemp = `${Math.round(response.data.main.feels_like)}°C`;
   let currentCity = document.querySelector("#current-city");
   let currentTemp = document.querySelector("#cur-temp-value");
+  let currentFeelsLikeTemp = document.querySelector("#current-feels-like-temp");
   currentCity.innerHTML = city;
   currentTemp.innerHTML = temp;
+  currentFeelsLikeTemp.innerHTML = feelsLikeTemp;
 }
 
 function logPosition(position) {
