@@ -1,6 +1,8 @@
 //Set current Info about city and temp
 let apiKey = "f7ab8c50642226d2981457d7445b4fa2";
 let unitSys = "metric";
+let farenhUnit = "°F";
+let celsiusUnit = "°C";
 
 function formateDate(timestamp) {
   let now = new Date(timestamp);
@@ -9,11 +11,23 @@ function formateDate(timestamp) {
   ${getTime(now.getHours(), now.getMinutes())}`;
 }
 
+function setCelsiusUnit(element) {
+  element.innerHTML = celsiusUnit;
+}
+
+function setFarenhUnit(element) {
+  element.innerHTML = farenhUnit;
+}
+
+function getFahrenheitValue(celsiusValue) {
+  return Math.round((celsiusValue * 9) / 5 + 32);
+}
 function getCurrentInfo(response) {
   console.log(response);
 
   let cityElement = document.querySelector("#city");
   let curTempElement = document.querySelector("#cur-temp-value");
+  let curUnitElement = document.querySelectorAll(".unit");
   let curFeelsLikeTempElement = document.querySelector("#cur-feels-like-temp");
   let weatherDescrElement = document.querySelector("#weather-description");
   let fullCurDateElement = document.querySelector("#cur-date");
@@ -21,10 +35,13 @@ function getCurrentInfo(response) {
 
   cityElement.innerHTML = response.data.name;
   curTempElement.innerHTML = Math.round(response.data.main.temp);
+  curUnitElement.forEach(setCelsiusUnit);
   curFeelsLikeTempElement.innerHTML = Math.round(response.data.main.feels_like);
   weatherDescrElement.innerHTML = response.data.weather[0].description;
   fullCurDateElement.innerHTML = formateDate(response.data.dt * 1000);
   curWeath.innerHTML = weatherIcons[response.data.weather[0].icon];
+
+  tempCelsiusValue = Math.round(response.data.main.temp);
 }
 
 function searchByCity(city) {
@@ -55,7 +72,6 @@ function getLocation(position) {
     Math.round(position.coords.longitude)
   );
 }
-navigator.geolocation.getCurrentPosition(getLocation);
 
 //Button for searching current position
 function currentLocation() {
@@ -117,22 +133,28 @@ function getTime(hour, min) {
 //Search and Change current city
 
 //Change temperature units
-let tempCelsiusValue = 22;
-let tempFarenhValue = (tempCelsiusValue * 9) / 5 + 32;
+let tempCelsiusValue = null;
 
 function changeUnit() {
   let changeUnitBtnElement = document.querySelector("#change-unit-btn");
   let curTempValueElement = document.querySelector("#cur-temp-value");
-  if (changeUnitBtnElement.value === "°F") {
-    changeUnitBtnElement.innerHTML = "°C";
-    curTempValueElement.innerHTML = `${tempFarenhValue}°F`;
-    changeUnitBtnElement.value = "°C";
+  let curUnitElement = document.querySelectorAll(".unit");
+  // curTempValueElement.value;
+  let tempFarenhValue = getFahrenheitValue(tempCelsiusValue);
+  if (changeUnitBtnElement.value === farenhUnit) {
+    changeUnitBtnElement.innerHTML = celsiusUnit;
+    curTempValueElement.innerHTML = tempFarenhValue;
+    curUnitElement.forEach(setFarenhUnit);
+    changeUnitBtnElement.value = celsiusUnit;
   } else {
-    changeUnitBtnElement.innerHTML = "°F";
-    curTempValueElement.innerHTML = `${tempCelsiusValue}°C`;
-    changeUnitBtnElement.value = "°F";
+    changeUnitBtnElement.innerHTML = farenhUnit;
+    curTempValueElement.innerHTML = tempCelsiusValue;
+    curUnitElement.forEach(setCelsiusUnit);
+    changeUnitBtnElement.value = farenhUnit;
   }
 }
 
 let changeUnitBtnElemen = document.querySelector("#change-unit-btn");
 changeUnitBtnElemen.addEventListener("click", changeUnit);
+
+navigator.geolocation.getCurrentPosition(getLocation);
