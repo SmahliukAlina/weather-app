@@ -31,7 +31,8 @@ function getCurrentInfo(response) {
   let curFeelsLikeTempElement = document.querySelector("#cur-feels-like-temp");
   let weatherDescrElement = document.querySelector("#weather-description");
   let fullCurDateElement = document.querySelector("#cur-date");
-  let curWeath = document.querySelector("#cur-weather-emoji");
+  let curWeathEmojiElement = document.querySelector("#cur-weather-emoji");
+  let windElement = document.querySelector("#wind");
 
   cityElement.innerHTML = response.data.name;
   curTempElement.innerHTML = Math.round(response.data.main.temp);
@@ -39,7 +40,8 @@ function getCurrentInfo(response) {
   curFeelsLikeTempElement.innerHTML = Math.round(response.data.main.feels_like);
   weatherDescrElement.innerHTML = response.data.weather[0].description;
   fullCurDateElement.innerHTML = formateDate(response.data.dt * 1000);
-  curWeath.innerHTML = weatherIcons[response.data.weather[0].icon];
+  curWeathEmojiElement.innerHTML = weatherIcons[response.data.weather[0].icon];
+  windElement.innerHTML = Math.round(response.data.wind.speed);
 
   tempCelsiusValue = Math.round(response.data.main.temp);
   feelsLikeCelsiusValue = Math.round(response.data.main.feels_like);

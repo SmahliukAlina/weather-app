@@ -71,7 +71,8 @@ button:hover {
   margin-left: 20px;
 }
 
-.cur-feels-like-title {
+.cur-feels-like-title,
+.wind-title {
   font-size: 15px;
   padding-top: 0;
 }
