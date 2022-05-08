@@ -49,7 +49,7 @@ button:hover {
   text-align: center;
 }
 
-.search-form {
+.search {
   text-align: right;
 }
 
@@ -110,18 +110,18 @@ button:hover {
   font-weight: 500;
 }
 
-#search-city-input {
+#city-input {
   border: 1px solid #3bb4c1;
   border-radius: 4px;
   width: 60%;
 }
 
-#search-city-input:focus {
+#city-input:focus {
   color: #048998;
   outline: none;
 }
 
-#search-city-btn {
+#search-btn {
   width: 70px;
 }
 
