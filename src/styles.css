@@ -1,0 +1,132 @@
+.container {
+  margin: 30px auto;
+}
+.card-header {
+  background-color: #c4dce0;
+  font-family: "Cinzel", serif;
+}
+.card-body {
+  background-color: #daf4f5;
+  color: #048998;
+  font-family: "Domine", serif;
+  font-weight: 500;
+}
+
+.col-right,
+.col-left {
+  margin-top: 30px;
+  text-align: center;
+}
+
+h1 {
+  color: #048998;
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 0rem;
+}
+.logo {
+  height: 50px;
+}
+.search {
+  text-align: center;
+}
+
+#search-city-input {
+  border: 1px solid #3bb4c1;
+  border-radius: 4px;
+  width: 60%;
+}
+
+#search-city-input:focus {
+  color: #048998;
+  outline: none;
+}
+
+button {
+  background-color: #3bb4c1;
+  border: 1px solid #3bb4c1;
+  border-radius: 4px;
+  box-shadow: 10px 5px 5px #c4dce0;
+  color: #f6f5f5;
+  transition: all 200ms ease-in-out;
+}
+
+button:hover {
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+#search-city-button {
+  width: 70px;
+}
+
+#change-unit-button {
+  font-size: 20px;
+}
+
+.current-city-title {
+  font-family: "Cinzel", serif;
+  font-size: 40px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+#current-weekday {
+  text-align: right;
+}
+
+#current-time {
+  text-align: left;
+}
+
+#current-weekday,
+#current-time,
+#current-date {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.current-temperature {
+  font-size: 60px;
+  padding-top: 20px;
+  padding-bottom: 0;
+}
+
+.current-feels-like-title {
+  font-size: 15px;
+  padding-top: 0;
+}
+
+.current-weather-emoji {
+  font-size: 90px;
+  padding-top: 10px;
+}
+
+.forecast-title {
+  font-family: "Cinzel", serif;
+  font-size: 30px;
+  padding-bottom: 15px;
+}
+
+.weekday {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.day {
+  font-size: 20px;
+}
+
+.date {
+  font-size: 15px;
+}
+
+.temperature {
+  font-size: 25px;
+  padding-top: 5px;
+}
+
+.weather-emoji {
+  font-size: 30px;
+}
