@@ -130,3 +130,13 @@ button:hover {
 .weather-emoji {
   font-size: 30px;
 }
+
+.open-source-text {
+  color: #048998;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 500;
+}
+
+#open-source-link {
+  color: #048998;
+}
