@@ -11,10 +11,12 @@ function getTemp(response) {
   let cityElement = document.querySelector("#city");
   let curTempElement = document.querySelector("#cur-temp-value");
   let curFeelsLikeTempElement = document.querySelector("#cur-feels-like-temp");
+  let weatherDescrElement = document.querySelector("#weather-description");
 
   cityElement.innerHTML = city;
   curTempElement.innerHTML = temp;
   curFeelsLikeTempElement.innerHTML = feelsLikeTemp;
+  weatherDescrElement.innerHTML = response.data.weather[0].description;
 }
 
 function logPosition(position) {
