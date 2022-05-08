@@ -7,7 +7,7 @@ let celsiusUnit = "°C";
 function formateDate(timestamp) {
   let now = new Date(timestamp);
   return `${weekDays[now.getDay()]}, 
-  ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}, 
+  ${months[now.getMonth()]} ${now.getDate()}, 
   ${getTime(now.getHours(), now.getMinutes())}`;
 }
 
@@ -42,6 +42,7 @@ function getCurrentInfo(response) {
   curWeath.innerHTML = weatherIcons[response.data.weather[0].icon];
 
   tempCelsiusValue = Math.round(response.data.main.temp);
+  feelsLikeCelsiusValue = Math.round(response.data.main.feels_like);
 }
 
 function searchByCity(city) {
@@ -134,21 +135,25 @@ function getTime(hour, min) {
 
 //Change temperature units
 let tempCelsiusValue = null;
-
+let feelsLikeCelsiusValue = null;
 function changeUnit() {
   let changeUnitBtnElement = document.querySelector("#change-unit-btn");
   let curTempValueElement = document.querySelector("#cur-temp-value");
   let curUnitElement = document.querySelectorAll(".unit");
-  // curTempValueElement.value;
-  let tempFarenhValue = getFahrenheitValue(tempCelsiusValue);
+  let curFeelsLikeTempElement = document.querySelector("#cur-feels-like-temp");
+
   if (changeUnitBtnElement.value === farenhUnit) {
     changeUnitBtnElement.innerHTML = celsiusUnit;
-    curTempValueElement.innerHTML = tempFarenhValue;
+    curTempValueElement.innerHTML = getFahrenheitValue(tempCelsiusValue);
+    curFeelsLikeTempElement.innerHTML = getFahrenheitValue(
+      feelsLikeCelsiusValue
+    );
     curUnitElement.forEach(setFarenhUnit);
     changeUnitBtnElement.value = celsiusUnit;
   } else {
     changeUnitBtnElement.innerHTML = farenhUnit;
     curTempValueElement.innerHTML = tempCelsiusValue;
+    curFeelsLikeTempElement.innerHTML = feelsLikeCelsiusValue;
     curUnitElement.forEach(setCelsiusUnit);
     changeUnitBtnElement.value = farenhUnit;
   }
