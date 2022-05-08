@@ -7,9 +7,9 @@ function getTemp(response) {
   let city = response.data.name;
   let temp = `${Math.round(response.data.main.temp)}°C`;
   let feelsLikeTemp = `${Math.round(response.data.main.feels_like)}°C`;
-  let currentCity = document.querySelector("#current-city");
+  let currentCity = document.querySelector("#cur-city");
   let currentTemp = document.querySelector("#cur-temp-value");
-  let currentFeelsLikeTemp = document.querySelector("#current-feels-like-temp");
+  let currentFeelsLikeTemp = document.querySelector("#cur-feels-like-temp");
   currentCity.innerHTML = city;
   currentTemp.innerHTML = temp;
   currentFeelsLikeTemp.innerHTML = feelsLikeTemp;
@@ -27,7 +27,7 @@ navigator.geolocation.getCurrentPosition(logPosition);
 function getCurPos() {
   navigator.geolocation.getCurrentPosition(logPosition);
 }
-let currentLocButton = document.querySelector("#current-location-button");
+let currentLocButton = document.querySelector("#cur-loc-btn");
 currentLocButton.addEventListener("click", getCurPos);
 
 //Set current date
@@ -54,14 +54,14 @@ let currentDate = now.getDate();
 let currentMonth = months[now.getMonth()];
 let currentYear = now.getFullYear();
 
-let curWeekDay = document.querySelector("#current-weekday");
+let curWeekDay = document.querySelector("#cur-weekday");
 curWeekDay.innerHTML = `${currentWeekDay}`;
-let fullCurrentDate = document.querySelector("#current-date");
+let fullCurrentDate = document.querySelector("#cur-date");
 fullCurrentDate.innerHTML = `${currentMonth} ${currentDate}, ${currentYear}`;
 
 let currentHour = now.getHours();
 let currentMin = now.getMinutes();
-let currentTime = document.querySelector("#current-time");
+let currentTime = document.querySelector("#cur-time");
 
 function getTime(hour, min) {
   if (min < 10) {
@@ -92,7 +92,7 @@ let tempCelsiusValue = 22;
 let tempFarenhValue = (tempCelsiusValue * 9) / 5 + 32;
 
 function changeUnit() {
-  let changeUnitButton = document.querySelector("#change-unit-button");
+  let changeUnitButton = document.querySelector("#change-unit-btn");
   let currentTempValue = document.querySelector("#cur-temp-value");
   if (changeUnitButton.value === "°F") {
     changeUnitButton.innerHTML = "°C";
@@ -105,5 +105,5 @@ function changeUnit() {
   }
 }
 
-let changeUnitButton = document.querySelector("#change-unit-button");
+let changeUnitButton = document.querySelector("#change-unit-btn");
 changeUnitButton.addEventListener("click", changeUnit);

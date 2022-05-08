@@ -37,14 +37,14 @@
             <img
               src="images/logo-weather.svg"
               alt="logo-app-weather"
-              class="logo"
+              class="logo-header"
             />
             WeatherApp
           </h1>
         </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-8 search">
+            <div class="col-8 search-form">
               <form id="search-form">
                 <input
                   type="search"
@@ -63,25 +63,25 @@
             </div>
             <div class="row">
               <div class="col col-left">
-                <div class="current-city-title" id="current-city"></div>
+                <div class="cur-city-title" id="cur-city"></div>
                 <div class="row">
-                  <div class="col" id="current-weekday">Friday</div>
-                  <div class="col" id="current-date">06.05.22</div>
-                  <div class="col" id="current-time">13:12</div>
+                  <div class="col" id="cur-weekday">Friday</div>
+                  <div class="col" id="cur-date">06.05.22</div>
+                  <div class="col" id="cur-time">13:12</div>
                 </div>
                 <div class="row">
-                  <div class="col" id="current-weather">
-                    <div class="current-temperature">
+                  <div class="col" id="cur-weather">
+                    <div class="cur-temperature">
                       <span id="cur-temp-value"></span>
                       <span>
-                        <button id="change-unit-button" value="°F">°F</button>
+                        <button id="change-unit-btn" value="°F">°F</button>
                       </span>
                     </div>
-                    <div class="current-feels-like-title">
+                    <div class="cur-feels-like-title">
                       Feels like
-                      <span id="current-feels-like-temp"></span>
+                      <span id="cur-feels-like-temp"></span>
                     </div>
-                    <div class="current-weather-emoji">🌤️</div>
+                    <div class="cur-weather-emoji">🌤️</div>
                   </div>
                 </div>
               </div>

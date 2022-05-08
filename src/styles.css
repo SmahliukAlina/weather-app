@@ -32,7 +32,7 @@ button:hover {
   font-family: "Cinzel", serif;
 }
 
-.logo {
+.logo-header {
   height: 50px;
 }
 
@@ -49,29 +49,29 @@ button:hover {
   text-align: center;
 }
 
-.search {
+.search-form {
   text-align: right;
 }
 
-.current-city-title {
+.cur-city-title {
   font-family: "Cinzel", serif;
   font-size: 40px;
   margin-bottom: 25px;
   text-align: center;
 }
-.current-temperature {
+.cur-temperature {
   font-size: 60px;
   padding-top: 20px;
   padding-bottom: 0;
   margin-left: 20px;
 }
 
-.current-feels-like-title {
+.cur-feels-like-title {
   font-size: 15px;
   padding-top: 0;
 }
 
-.current-weather-emoji {
+.cur-weather-emoji {
   font-size: 90px;
   padding-top: 10px;
 }
@@ -125,21 +125,21 @@ button:hover {
   width: 70px;
 }
 
-#change-unit-button {
+#change-unit-btn {
   font-size: 20px;
 }
 
-#current-weekday {
+#cur-weekday {
   text-align: right;
 }
 
-#current-time {
+#cur-time {
   text-align: left;
 }
 
-#current-weekday,
-#current-time,
-#current-date {
+#cur-weekday,
+#cur-time,
+#cur-date {
   font-size: 20px;
   margin-bottom: 15px;
 }
