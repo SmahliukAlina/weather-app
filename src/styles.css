@@ -31,7 +31,7 @@ h1 {
   height: 50px;
 }
 .search {
-  text-align: center;
+  text-align: right;
 }
 
 #search-city-input {
@@ -94,6 +94,7 @@ button:hover {
   font-size: 60px;
   padding-top: 20px;
   padding-bottom: 0;
+  margin-left: 20px;
 }
 
 .current-feels-like-title {
