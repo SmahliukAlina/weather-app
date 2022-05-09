@@ -3,6 +3,43 @@ let apiKey = "f7ab8c50642226d2981457d7445b4fa2";
 let unitSys = "metric";
 let farenhUnit = "°F";
 let celsiusUnit = "°C";
+let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+let months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+let weatherIcons = {
+  "01d": "☀️",
+  "01n": "☀️",
+  "02d": "🌤️",
+  "02n": "🌤️",
+  "03d": "⛅",
+  "03n": "⛅",
+  "04d": "☁️",
+  "04n": "☁️",
+  "09d": "🌧️",
+  "09n": "🌧️",
+  "10d": "🌦️",
+  "10n": "🌦️",
+  "11d": "⛈️",
+  "11n": "⛈️",
+  "13d": "🌨️",
+  "13n": "🌨️",
+  "50d": "🌫️",
+  "50n": "🌫️",
+};
 
 function formateDate(timestamp) {
   let now = new Date(timestamp);
@@ -22,6 +59,7 @@ function setFarenhUnit(element) {
 function getFahrenheitValue(celsiusValue) {
   return Math.round((celsiusValue * 9) / 5 + 32);
 }
+
 function getCurrentInfo(response) {
   console.log(response);
 
@@ -69,6 +107,30 @@ function submitForm(event) {
 let searchFormElement = document.querySelector("#search");
 searchFormElement.addEventListener("submit", submitForm);
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = "";
+  let forecastDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  forecastDays.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="row">
+                  <div class="col-6 weekday" id="weekday">
+                    <div class="day" id="day">${day}</div>
+                    <div class="date" id="date">May 9</div>
+                  </div>
+                  <div class="col-3 temperature">
+                    <span id="temperature">20</span>
+                    <span class="unit"></span>
+                  </div>
+                  <div class="col-3 weather-emoji" id="weather-emoji">⛅</div>
+                </div>`;
+  });
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
 function getLocation(position) {
   searchByLocation(
     Math.round(position.coords.latitude),
@@ -84,42 +146,6 @@ let currentLocButton = document.querySelector("#cur-loc-btn");
 currentLocButton.addEventListener("click", currentLocation);
 
 //Set current date
-let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-let months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
-let weatherIcons = {
-  "01d": "☀️",
-  "01n": "☀️",
-  "02d": "🌤️",
-  "02n": "🌤️",
-  "03d": "⛅",
-  "03n": "⛅",
-  "04d": "☁️",
-  "04n": "☁️",
-  "09d": "🌧️",
-  "09n": "🌧️",
-  "10d": "🌦️",
-  "10n": "🌦️",
-  "11d": "⛈️",
-  "11n": "⛈️",
-  "13d": "🌨️",
-  "13n": "🌨️",
-  "50d": "🌫️",
-  "50n": "🌫️",
-};
 
 function getTime(hour, min) {
   let hours = hour;
