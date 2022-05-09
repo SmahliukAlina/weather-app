@@ -81,33 +81,13 @@ function getCurrentInfo(response) {
   curWeathEmojiElement.innerHTML = weatherIcons[response.data.weather[0].icon];
   windElement.innerHTML = Math.round(response.data.wind.speed);
 
+  searchForecast(response.data.coord.lat, response.data.coord.lon);
   tempCelsiusValue = Math.round(response.data.main.temp);
   feelsLikeCelsiusValue = Math.round(response.data.main.feels_like);
 }
 
-function searchByCity(city) {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unitSys}&appid=${apiKey}`;
-  axios.get(apiUrl).then(getCurrentInfo);
-}
-
-function searchByLocation(latitude, longitude) {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unitSys}&appid=${apiKey}`;
-  axios.get(apiUrl).then(getCurrentInfo);
-}
-
-function submitForm(event) {
-  event.preventDefault();
-  let cityInputElement = document.querySelector("#city-input");
-  if (cityInputElement.value !== "") {
-    searchByCity(cityInputElement.value);
-    cityInputElement.value = null;
-  }
-}
-
-let searchFormElement = document.querySelector("#search");
-searchFormElement.addEventListener("submit", submitForm);
-
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = "";
   let forecastDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
@@ -130,7 +110,34 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
-displayForecast();
+function searchByCity(city) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unitSys}&appid=${apiKey}`;
+  axios.get(apiUrl).then(getCurrentInfo);
+}
+
+function searchByLocation(latitude, longitude) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unitSys}&appid=${apiKey}`;
+  axios.get(apiUrl).then(getCurrentInfo);
+}
+
+function searchForecast(lat, lon) {
+  let exclude = "current,minutely,hourly,alerts";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&units=${unitSys}&appid=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function submitForm(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  if (cityInputElement.value !== "") {
+    searchByCity(cityInputElement.value);
+    cityInputElement.value = null;
+  }
+}
+
+let searchFormElement = document.querySelector("#search");
+searchFormElement.addEventListener("submit", submitForm);
+
 function getLocation(position) {
   searchByLocation(
     Math.round(position.coords.latitude),
