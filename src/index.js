@@ -134,8 +134,10 @@ function getDailyForecast(dayForecast) {
                     )}</div>
                   </div>
                   <div class="col-3 temperature">
-                    <span id="temperature">${dayForecast.temp.day}</span>
-                    <span class="unit"></span>
+                    <span id="temperature">${Math.round(
+                      dayForecast.temp.day
+                    )}</span>
+                    <span class="unit">${celsiusUnit}</span>
                   </div>
                   <div class="col-3 weather-emoji" id="weather-emoji">${
                     weatherIcons[dayForecast.weather[0].icon]
