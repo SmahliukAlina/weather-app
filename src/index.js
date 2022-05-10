@@ -134,7 +134,7 @@ function getDailyForecast(dayForecast) {
   celsiusForecastMax[dayIndex] = Math.round(dayForecast.temp.max);
   dayIndex++;
   return `<div class="row">
-                  <div class="col-5 weekday" id="weekday">
+                  <div class="col-4 weekday" id="weekday">
                     <div class="day" id="day">${formatForecastDay(
                       dayForecast.dt * 1000
                     )}</div>
@@ -142,7 +142,7 @@ function getDailyForecast(dayForecast) {
                       dayForecast.dt * 1000
                     )}</div>
                   </div>
-                  <div class="col-4 temperature">
+                  <div class="col-5 temperature">
                     <span class="temp-value max-temp-value" id="max-temperature">${Math.round(
                       dayForecast.temp.max
                     )}</span><span class="unit">${celsiusUnit}</span>/
