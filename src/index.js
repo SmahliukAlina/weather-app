@@ -96,8 +96,6 @@ function getFahrenheitValue(celsiusValue) {
 
 //Function get by API current Weather and Display it
 function displayCurrentWeather(response) {
-  console.log(response);
-
   tempCelsiusValue = Math.round(response.data.main.temp);
   feelsLikeCelsiusValue = Math.round(response.data.main.feels_like);
 
@@ -149,8 +147,6 @@ function getDailyForecast(dayForecast) {
 
 //Function get by API Forecast Weather and Display it
 function displayForecast(response) {
-  console.log(response.data);
-
   let forecastElement = document.querySelector("#forecast");
 
   let forecastDays = response.data.daily;
