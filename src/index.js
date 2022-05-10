@@ -10,7 +10,7 @@ let weekDays = [
   { short: "Sun", long: "Sunday" },
   { short: "Mon", long: "Monday" },
   { short: "Tue", long: "Tuesday" },
-  { short: "Wed", long: "Wednesady" },
+  { short: "Wed", long: "Wednesday" },
   { short: "Thu", long: "Thursday" },
   { short: "Fri", long: "Friday" },
   { short: "Sat", long: "Saturday" },
@@ -125,7 +125,7 @@ function displayCurrentWeather(response) {
 //Function return HTML for each day of forecast
 function getDailyForecast(dayForecast) {
   return `<div class="row">
-                  <div class="col-6 weekday" id="weekday">
+                  <div class="col-5 weekday" id="weekday">
                     <div class="day" id="day">${formatForecastDay(
                       dayForecast.dt * 1000
                     )}</div>
@@ -133,11 +133,13 @@ function getDailyForecast(dayForecast) {
                       dayForecast.dt * 1000
                     )}</div>
                   </div>
-                  <div class="col-3 temperature">
-                    <span id="temperature">${Math.round(
-                      dayForecast.temp.day
-                    )}</span>
-                    <span class="unit">${celsiusUnit}</span>
+                  <div class="col-4 temperature">
+                    <span class="temp-value" id="max-temperature">${Math.round(
+                      dayForecast.temp.max
+                    )}</span><span class="unit">${celsiusUnit}</span>/
+                    <span class="temp-value" id="min-temperature">${Math.round(
+                      dayForecast.temp.min
+                    )}</span><span class="unit">${celsiusUnit}</span>
                   </div>
                   <div class="col-3 weather-emoji" id="weather-emoji">${
                     weatherIcons[dayForecast.weather[0].icon]
