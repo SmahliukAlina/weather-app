@@ -6,6 +6,10 @@ let fahrenheitUnit = "°F";
 let celsiusUnit = "°C";
 let tempCelsiusValue = null;
 let feelsLikeCelsiusValue = null;
+let celsiusForecastMin = [];
+let celsiusForecastMax = [];
+let dayIndex = 0;
+let daysInForecast = 5;
 let weekDays = [
   { short: "Sun", long: "Sunday" },
   { short: "Mon", long: "Monday" },
@@ -94,6 +98,10 @@ function getFahrenheitValue(celsiusValue) {
   return Math.round((celsiusValue * 9) / 5 + 32);
 }
 
+function getFahrenheitValueForecast(index) {
+  return Math.round((celsiusForecastMin[index] * 9) / 5 + 32);
+}
+
 //Function get by API current Weather and Display it
 function displayCurrentWeather(response) {
   tempCelsiusValue = Math.round(response.data.main.temp);
@@ -122,6 +130,9 @@ function displayCurrentWeather(response) {
 
 //Function return HTML for each day of forecast
 function getDailyForecast(dayForecast) {
+  celsiusForecastMin[dayIndex] = Math.round(dayForecast.temp.min);
+  celsiusForecastMax[dayIndex] = Math.round(dayForecast.temp.max);
+  dayIndex++;
   return `<div class="row">
                   <div class="col-5 weekday" id="weekday">
                     <div class="day" id="day">${formatForecastDay(
@@ -132,10 +143,10 @@ function getDailyForecast(dayForecast) {
                     )}</div>
                   </div>
                   <div class="col-4 temperature">
-                    <span class="temp-value" id="max-temperature">${Math.round(
+                    <span class="temp-value max-temp-value" id="max-temperature">${Math.round(
                       dayForecast.temp.max
                     )}</span><span class="unit">${celsiusUnit}</span>/
-                    <span class="temp-value" id="min-temperature">${Math.round(
+                    <span class="temp-value min-temp-value" id="min-temperature">${Math.round(
                       dayForecast.temp.min
                     )}</span><span class="unit">${celsiusUnit}</span>
                   </div>
@@ -151,10 +162,10 @@ function displayForecast(response) {
 
   let forecastDays = response.data.daily;
   let forecastHTML = "";
-  for (let i = 1; i < 6; i++) {
+  for (let i = 1; i < daysInForecast + 1; i++) {
     forecastHTML = forecastHTML + getDailyForecast(forecastDays[i]);
   }
-
+  dayIndex = 0;
   forecastElement.innerHTML = forecastHTML;
 }
 
@@ -195,12 +206,16 @@ function currentLocation() {
 let currentLocButton = document.querySelector("#cur-loc-btn");
 currentLocButton.addEventListener("click", currentLocation);
 
-//Change temperature units
+//Change temperature units and values
 function changeUnit() {
   let changeUnitBtnElement = document.querySelector("#change-unit-btn");
   let curTempValueElement = document.querySelector("#cur-temp-value");
-  let curUnitElement = document.querySelectorAll(".cur-unit");
+  let curUnitElement = document.querySelectorAll(".unit");
   let curFeelsLikeTempElement = document.querySelector("#cur-feels-like-temp");
+  let forecastMinTemperatureElements =
+    document.querySelectorAll(".min-temp-value");
+  let forecastMaxTemperatureElements =
+    document.querySelectorAll(".max-temp-value");
 
   if (changeUnitBtnElement.value === fahrenheitUnit) {
     changeUnitBtnElement.innerHTML = celsiusUnit;
@@ -208,12 +223,24 @@ function changeUnit() {
     curFeelsLikeTempElement.innerHTML = getFahrenheitValue(
       feelsLikeCelsiusValue
     );
+    forecastMinTemperatureElements.forEach(function (day, index) {
+      day.innerHTML = getFahrenheitValue(celsiusForecastMin[index]);
+    });
+    forecastMaxTemperatureElements.forEach(function (day, index) {
+      day.innerHTML = getFahrenheitValue(celsiusForecastMax[index]);
+    });
     curUnitElement.forEach(setFahrenheitUnit);
     changeUnitBtnElement.value = celsiusUnit;
   } else {
     changeUnitBtnElement.innerHTML = fahrenheitUnit;
     curTempValueElement.innerHTML = tempCelsiusValue;
     curFeelsLikeTempElement.innerHTML = feelsLikeCelsiusValue;
+    forecastMinTemperatureElements.forEach(function (day, index) {
+      day.innerHTML = celsiusForecastMin[index];
+    });
+    forecastMaxTemperatureElements.forEach(function (day, index) {
+      day.innerHTML = celsiusForecastMax[index];
+    });
     curUnitElement.forEach(setCelsiusUnit);
     changeUnitBtnElement.value = fahrenheitUnit;
   }
