@@ -155,6 +155,7 @@ button:hover {
 #weather-description::first-letter {
   text-transform: capitalize;
 }
+
 #open-source-link {
   color: #048998;
 }

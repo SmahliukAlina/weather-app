@@ -103,7 +103,7 @@ function displayCurrentWeather(response) {
 
   let cityElement = document.querySelector("#city");
   let curTempElement = document.querySelector("#cur-temp-value");
-  let curUnitElement = document.querySelectorAll(".unit");
+  let curUnitElement = document.querySelectorAll(".cur-unit");
   let curFeelsLikeTempElement = document.querySelector("#cur-feels-like-temp");
   let weatherDescrElement = document.querySelector("#weather-description");
   let fullCurDateElement = document.querySelector("#cur-date");
@@ -203,7 +203,7 @@ currentLocButton.addEventListener("click", currentLocation);
 function changeUnit() {
   let changeUnitBtnElement = document.querySelector("#change-unit-btn");
   let curTempValueElement = document.querySelector("#cur-temp-value");
-  let curUnitElement = document.querySelectorAll(".unit");
+  let curUnitElement = document.querySelectorAll(".cur-unit");
   let curFeelsLikeTempElement = document.querySelector("#cur-feels-like-temp");
 
   if (changeUnitBtnElement.value === fahrenheitUnit) {
